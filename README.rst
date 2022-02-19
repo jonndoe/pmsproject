@@ -3,6 +3,24 @@ pmsproject
 
 Just one more CMS
 
+
+Project has two branches on gitlab:
+ - master(for deploy to prod) - never commit to master branch.
+ - dev - (for tests, etc) where you have to commit.
+
+
+
+This project can be run in 4 ways:
+
+ - **production-remote-docker**: these are settings to run it in docker on prod server(heroku, or any other server)
+
+ - **production-local-docker**: these are settings to run it locally in docker with settings as close as possible to real production-remote-docker settings. Run this to see how all goes if not possible to run it on remote server.
+
+ - **dev-local-docker-complete**: these are settings to run it locally for dev totally with docker, these are ok if internet connection is good. Try to keep these settings also as similar as possible with production settings.
+
+ - **dev-local-docker-partly**: these are settings to run it for dev locally - django runs just inside conda environment, and postgres and redis runs in docker containers. These are for easy development when no internet connection is provided. Because postgres and redis we have already loaded and configured, and conda_env also might be already installed and configured for the project. Locally this uses **env38_cookiecutter**.
+
+
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter
      :target: https://github.com/pydanny/cookiecutter-django/
      :alt: Built with Cookiecutter Django
