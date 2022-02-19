@@ -20,6 +20,7 @@ flake8:
 pytest:
   stage: test
   image: python:3.9
+  # the tag was removed because it causes issue whith gitlab ci, needs to figure it out.
   #tags:
     #- python
   services:
