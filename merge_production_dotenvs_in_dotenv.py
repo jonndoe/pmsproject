@@ -1,3 +1,11 @@
+# This script is at some help if we need to generate one single .env from
+# many .env files located in production dir.
+# This can be an option if we run postgres and redis as docker containers,
+# but we need to run django in prod mood locally in conda_env. In this case
+# we need to generate this single .env file in the root of the project and read
+# all environment variable from .env to the system.
+
+
 import os
 from pathlib import Path
 from typing import Sequence
