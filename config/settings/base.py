@@ -10,6 +10,9 @@ ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = ROOT_DIR / "pmsproject"
 env = environ.Env()
 
+
+# if we single run django-app(no docker) we should create .env file in root
+# and environ will read this file and load all the variables.
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
@@ -41,6 +44,7 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+# DATABASES = {"default": env.db("DATABASE_URL")}
 DATABASES = {
     "default": env.db("DATABASE_URL", default="postgres:///pmsproject"),
 }

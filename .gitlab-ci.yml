@@ -19,18 +19,16 @@ flake8:
 
 pytest:
   stage: test
-  image: python:3.9
-  # the tag was removed because it causes issue whith gitlab ci, needs to figure it out.
-  #tags:
-    #- python
+  image: docker/compose:latest
+  tags:
+    - docker
   services:
-    - postgres:12.3
-  variables:
-    DATABASE_URL: pgsql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres/$POSTGRES_DB
-
+    - docker:dind
   before_script:
-    - pip install -r requirements/local.txt
-
+    - docker-compose -f local.yml build
+    # Ensure celerybeat does not crash due to non-existent tables
+    - docker-compose -f local.yml run --rm django python manage.py migrate
+    - docker-compose -f local.yml up -d
   script:
-    - pytest
+    - docker-compose -f local.yml run django pytest
 
